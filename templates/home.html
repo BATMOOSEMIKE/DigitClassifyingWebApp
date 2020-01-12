@@ -3,14 +3,30 @@
   <head>
     <meta charset="utf-8">
     <title>Flask Tutorial</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   </head>
+
+  <script>
+    function myFunction() {
+      $.ajax({
+                  url: "/predict",
+                  type: "POST"
+              }).done(function(response) {
+                var html = "<br><br><br><p> <b> Prediction : <b><p>";
+                response = response.result;
+                     $.each(response,function(key,val){
+                     console.log(val);
+                        html += "<p>" + val +"<p>"
+                    });
+                    html += "<br>";
+                    $(".show-data").append(html);
+                });
+    };
+    </script>
   <body>
-    {% extends "template.html" %}
-    {% block content %}
-
-    <h1> My First Try Using Flask </h1>
-    <p> Flask is Fun </p>
-
-    {% endblock %}
+              <button id="clicked" onclick="myFunction()">Predict</button>
+          </p>
+      <div class="show-data" >
+      </div>
   </body>
 </html>
