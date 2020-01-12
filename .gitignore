@@ -1,0 +1,6 @@
+# OSX
+.DS_Store
+# VSCode
+.vscode/
+# virtualenv should be client side
+venv/
